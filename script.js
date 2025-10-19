@@ -1,5 +1,5 @@
 let button = document.getElementById("button");
-let a = 0;
+let clicks = 0;
 let numberThatChanges = 1;
 let costofclickers = 10;
 let amountofclickers = 0;
@@ -14,19 +14,30 @@ let amountofalchemys = 0;
 let costofbuttonupgrade = 100;
 let multiplier = 1;
 let buttonraritys = 0;
+let costofpickaxeupgrade = 100;
+
+function format() {
+    if (clicks < 1e3) {
+        document.getElementById("amount").textContent = clicks
+    }else if(clicks < 1e6) {
+        document.getElementById("amount").textContent = (clicks / 1e3).toFixed(2) + "K";
+    }else if(clicks < 1e9) {
+        document.getElementById("amount").textContent = (clicks / 1e6).toFixed(2) + "M";
+    }
+}
 function changeamount() {
-    a = a + 1 * multiplier;
-    document.getElementById("amount").innerHTML = a;
+    clicks = clicks + 1 * multiplier;
 }
 function upgradebutton() {
-    if (a >= costofbuttonupgrade) {
-        a = a - costofbuttonupgrade;
+    if (clicks >= costofbuttonupgrade) {
+        clicks = clicks - costofbuttonupgrade;
         multiplier = multiplier + 0.5;
         numberThatChanges = 1;
         costofbuttonupgrade = costofbuttonupgrade * 10;
         numberThatChanges = numberThatChanges * multiplier;
         document.getElementById("buttonupgrade").innerHTML = costofbuttonupgrade + "clicks";
         buttonraritys = buttonraritys + 1;
+
     }
     if (buttonraritys == 1) {
         document.getElementById("buttontext").innerHTML = "Iron";
@@ -65,71 +76,79 @@ function upgradebutton() {
         button.style.color = "#ffffff"
     }
 }
+function upgradepickaxe() {
+    if (clicks >= costofpickaxeupgrade) {
+        clicks -= costofpickaxeupgrade;
+        multiplier *= 2;
+        costofpickaxeupgrade *= 10;
 
+        document.getElementById("pickaxeupgrade").innerHTML = costofpickaxeupgrade + "clicks";
+    }
+}
 function autoclickers() {
-    if (a >= costofclickers) {
-        a = a - costofclickers;
-        document.getElementById("amount").innerHTML = a;
+    if (clicks >= costofclickers) {
+        clicks = clicks - costofclickers;
+
         amountofclickers = amountofclickers + 1;
         costofclickers = costofclickers + 10;
         document.getElementById("autoclickupgrade").innerHTML = costofclickers + "clicks";
     }
 }
 function clickers() {
-    a = a + amountofclickers * numberThatChanges;
-    document.getElementById("amount").innerHTML = a;
+    clicks = clicks + amountofclickers * numberThatChanges * 0.01;
+
 }
 function personupgrade() {
-    if (a >= costofpeople) {
-        a = a - costofpeople;
-        document.getElementById("amount").innerHTML = a;
+    if (clicks >= costofpeople) {
+        clicks = clicks - costofpeople;
+
         amountofpeople = amountofpeople + 1;
         costofpeople = costofpeople + 100;
         document.getElementById("peopleupgrade").innerHTML = costofpeople + "clicks";
     }
 }
 function person() {
-    a = a + amountofpeople * 10 * numberThatChanges;
-    document.getElementById("amount").innerHTML = a;
+    clicks = clicks + amountofpeople * 0.05 * numberThatChanges;
+
 }
 function drillerupgrade() {
-    if (a >= costofdriller) {
-        a = a - costofdriller;
-        document.getElementById("amount").innerHTML = a;
+    if (clicks >= costofdriller) {
+        clicks = clicks - costofdriller;
+
         amountofdrillers = amountofdrillers + 1;
         costofdriller = costofdriller + 500;
         document.getElementById("drillerupgrade").innerHTML = costofdriller + "clicks";
     }
 }
 function driller() {
-    a = a + amountofdrillers * 50 * numberThatChanges;
-    document.getElementById("amount").innerHTML = a;
+    clicks = clicks + amountofdrillers * 0.1 * numberThatChanges;
+
 }
 function factoryupgrade() {
-    if (a >= costoffactory) {
-        a = a - costoffactory;
-        document.getElementById("amount").innerHTML = a;
+    if (clicks >= costoffactory) {
+        clicks = clicks - costoffactory;
+
         amountoffactorys = amountoffactorys + 1;
         costoffactory = costoffactory + 5000;
         document.getElementById("factoryupgrade").innerHTML = costoffactory + "clicks";
     }
 }
 function factory() {
-    a = a + amountoffactorys * 250 * numberThatChanges;
-    document.getElementById("amount").innerHTML = a;
+    clicks = clicks + amountoffactorys * 0.25 * numberThatChanges;
+
 }
 function alchemyupgrade() {
-    if (a >= costofalchemy) {
-        a = a - costofalchemy;
-        document.getElementById("amount").innerHTML = a;
+    if (clicks >= costofalchemy) {
+        clicks = clicks - costofalchemy;
+
         amountofalchemys = amountofalchemys + 1;
         costofalchemy = costofalchemy + 100000;
         document.getElementById("alchemyupgrade").innerHTML = costofalchemy + "clicks";
     }
 }
 function alchemy() {
-    a = a + amountofalchemys * 5000 * numberThatChanges;
-    document.getElementById("amount").innerHTML = a;
+    clicks = clicks + amountofalchemys * 1 * numberThatChanges;
+
 }
 function gameLoop() {
     clickers();
@@ -137,5 +156,6 @@ function gameLoop() {
     driller();
     factory()
     alchemy();
+    format();
 }
-setInterval(gameLoop, 1000);
+setInterval(gameLoop, 1);
