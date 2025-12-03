@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Clicker</title>
+</head>
+
+<body>
+    <p id="amount"></p>
+    <button onclick="sellmaterials()" id="sellbutton">
+        <span>Sell</span>
+    </button>
+    <div class="grid">
+
+        <div>
+            <p id="amountofwood">0</p>
+            <button onclick="wood = changeamount('wood')" id="button">
+                <span id="buttontext">wood</span>
+            </button>
+        </div>
+
+
+        <div id="stonebutton">
+            <p id="amountofstone">0</p>
+            <button id="stone" onclick="stone = changeamount('stone')">
+                <span">Stone</span>
+            </button>
+        </div>
+
+        <div id="ironbutton">
+            <p id="amountofiron">0</p>
+            <button id="iron" onclick="iron = changeamount('iron')">
+                <span">Iron</span>
+            </button>
+        </div>
+
+        <div id="goldbutton">
+            <p id="amountofgold">0</p>
+            <button id="gold" onclick="gold = changeamount('gold')">
+                <span">Gold</span>
+            </button>
+        </div>
+
+        <div id="diamondbutton">
+            <p id="amountofdiamond">0</p>
+            <button id="diamond" onclick="diamond = changeamount('diamond')">
+                <span">Diamond</span>
+            </button>
+        </div>
+
+        <div id="rubybutton">
+            <p id="amountofruby">0</p>
+            <button id="ruby" onclick="ruby = changeamount('ruby')">
+                <span">Ruby</span>
+            </button>
+        </div>
+
+        <div id="emeraldbutton">
+            <p id="amountofemerald">0</p>
+            <button id="emerald" onclick="emerald = changeamount('emerald')">
+                <span">Emerald</span>
+            </button>
+        </div>
+
+        <div id="amythestbutton">
+            <p id="amountofamythest">0</p>
+            <button id="amythest" onclick="amythest = changeamount('amythest')">
+                <span">Amythest</span>
+            </button>
+        </div>
+
+        <div id="onixbutton">
+            <p id="amountofonix">0</p>
+            <button id="onix" onclick="onix = changeamount('onix')">
+                <span">Onix</span>
+            </button>
+        </div>
+
+        <div id="mineralupgrade">
+            <button onclick="unlockmineral()" id="mineralupgradename">UnlockStone</button>
+            <span id="mineralupgradecost">200 money + 100 wood</span>
+        </div>
+    </div>
+
+    <div class="upgrades">
+        <button onclick="addUpgrade('clicker')">
+            auto Clickers
+        </button>
+        <span id="clickertext">10 money</span>
+        <hr>
+        <button onclick="addUpgrade('people')">
+            people
+        </button>
+        <span id="peopletext">100 money</span>
+        <hr>
+        <button onclick="addUpgrade('driller')">
+            driller
+        </button>
+        <span id="drillertext">1000 money</span>
+        <hr>
+        <button onclick="addUpgrade('factory')">
+            factory
+        </button>
+        <span id="factorytext">10000 money</span>
+        <hr>
+        <button onclick="addUpgrade('alchemy')">
+            alchemy
+        </button>
+        <span id="alchemytext">100000 money</span>
+        <hr>
+        <button onclick="addUpgrade('laser')">
+            laser
+        </button>
+        <span id="lasertext">500000 money</span>
+        <hr>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
